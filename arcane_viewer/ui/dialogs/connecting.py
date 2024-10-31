@@ -20,7 +20,7 @@ class ConnectingDialog(utilities.QCenteredDialog):
     def __init__(self, parent: Optional[Union[QDialog, QMainWindow]] = None) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle("📡 Connecting...")
+        self.setWindowTitle("📡 连接中...")
 
         window_flags = (Qt.WindowType.Dialog |
                         Qt.WindowType.FramelessWindowHint)
@@ -43,7 +43,7 @@ class ConnectingDialog(utilities.QCenteredDialog):
         spacer_top = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         info_layout.addItem(spacer_top)
 
-        label = QLabel("Connecting to the remote server, please wait...")
+        label = QLabel("正在连接到远程服务器，请稍候...")
         info_layout.addWidget(label)
 
         progress_bar = QProgressBar()

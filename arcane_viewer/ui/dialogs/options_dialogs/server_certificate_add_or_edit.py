@@ -27,15 +27,15 @@ class ServerCertificateAddOrEditDialog(utilities.QCenteredDialog):
         self.settings = settings
         self.fingerprint = fingerprint
 
-        self.setWindowTitle("{} Trusted Server Certificate".format(
-            "Add" if self.fingerprint is None else "Edit"
+        self.setWindowTitle("{} 受信任的服务器证书".format(
+            "添加" if self.fingerprint is None else "编辑"
         ))
 
         core_layout = QVBoxLayout()
         self.setLayout(core_layout)
 
         # Create our form fields
-        self.fingerprint_label = QLabel("Fingerprint:")
+        self.fingerprint_label = QLabel("指纹:")
         core_layout.addWidget(self.fingerprint_label)
 
         self.fingerprint_edit = QLineEdit()
@@ -43,13 +43,13 @@ class ServerCertificateAddOrEditDialog(utilities.QCenteredDialog):
         self.fingerprint_edit.setText(self.fingerprint)
         core_layout.addWidget(self.fingerprint_edit)
 
-        self.display_name_label = QLabel("Display Name:")
+        self.display_name_label = QLabel("显示名称:")
         core_layout.addWidget(self.display_name_label)
 
         self.display_name_edit = QLineEdit()
         core_layout.addWidget(self.display_name_edit)
 
-        self.description_label = QLabel("Description:")
+        self.description_label = QLabel("描述:")
         core_layout.addWidget(self.description_label)
 
         self.description_edit = QTextEdit()
@@ -77,11 +77,11 @@ class ServerCertificateAddOrEditDialog(utilities.QCenteredDialog):
         spacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
         action_buttons_layout.addItem(spacer)
 
-        self.cancel_button = QPushButton("Cancel")
+        self.cancel_button = QPushButton("取消")
         self.cancel_button.clicked.connect(lambda: self.reject())
         action_buttons_layout.addWidget(self.cancel_button)
 
-        button_caption = "Add" if self.fingerprint is None else "Save"
+        button_caption = "添加" if self.fingerprint is None else "保存"
         self.validate_button = QPushButton(button_caption)
         self.validate_button.clicked.connect(self.save_or_update_certificate)
         self.validate_button.setDefault(True)

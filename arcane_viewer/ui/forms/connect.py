@@ -64,7 +64,7 @@ class ConnectWindow(utilities.QCenteredMainWindow):
         form_layout.addLayout(form_input_layout)
 
         # Server Address Form Input
-        self.server_address_label = QLabel("Server Address / Port:")
+        self.server_address_label = QLabel("服务器地址 / 端口:")
         form_input_layout.addWidget(self.server_address_label)
 
         server_address_layout = QHBoxLayout()
@@ -91,7 +91,7 @@ class ConnectWindow(utilities.QCenteredMainWindow):
         form_input_layout.addSpacing(4)
 
         # Password Form Input
-        self.password_label = QLabel("Password:")
+        self.password_label = QLabel("密码:")
         form_input_layout.addWidget(self.password_label)
 
         self.password_input = QLineEdit()
@@ -103,13 +103,13 @@ class ConnectWindow(utilities.QCenteredMainWindow):
         form_input_layout.addSpacing(6)
 
         # Action Buttons
-        self.about_button = QPushButton("About")
+        self.about_button = QPushButton("关于")
         self.about_button.clicked.connect(self.show_about_dialog)
 
-        self.options_button = QPushButton("Options")
+        self.options_button = QPushButton("设置")
         self.options_button.clicked.connect(lambda: arcane_dialogs.OptionsDialog(self).exec())
 
-        self.connect_button = QPushButton("Connect")
+        self.connect_button = QPushButton("连接")
         self.connect_button.clicked.connect(self.submit_form)
         self.connect_button.setDefault(True)
 
@@ -170,12 +170,12 @@ class ConnectWindow(utilities.QCenteredMainWindow):
                     pass
             except socket.gaierror:
                 self.server_address_input.setFocus()
-                raise Exception("Invalid hostname or IP address.")
+                raise Exception("主机名或 IP 地址无效。")
 
             # Check password input
             if len(self.password_input.text().strip()) == 0:
                 self.password_input.setFocus()
-                raise Exception("Password field cannot be empty.")
+                raise Exception("密码不能为空。")
 
             # Attempt connection
             self.__connect_thread = arcane_threads.ConnectThread(

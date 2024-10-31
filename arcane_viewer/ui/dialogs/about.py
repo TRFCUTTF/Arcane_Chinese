@@ -20,7 +20,7 @@ class AboutDialog(utilities.QCenteredDialog):
     def __init__(self, parent: Optional[Union[QDialog, QMainWindow]] = None) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle(f"About {arcane.APP_DISPLAY_NAME}")
+        self.setWindowTitle(f"关于 {arcane.APP_DISPLAY_NAME}")
 
         self.setWindowFlags(
             Qt.WindowType.Dialog |
@@ -41,10 +41,10 @@ class AboutDialog(utilities.QCenteredDialog):
 
         # About Author / Project
         text = QLabel(f"<h1>{arcane.APP_DISPLAY_NAME}</h1>"
-                      f"<p><b>Protocol Version:</b> {arcane.PROTOCOL_VERSION}</p>"
+                      f"<p><b>协议版本:</b> {arcane.PROTOCOL_VERSION}</p>"
                       f"<p><b>Python:</b> {sys.version.split()[0]} / <b>PyQt6: </b>{QT_VERSION_STR}</p>"
                       "<p>🇫🇷 Jean-Pierre LESUEUR (<a href=\"https://twitter.com/darkcodersc\">@DarkCoderSc</a>)</p>"
-                      "<p><b>License:</b> Apache License 2.0</p>"
+                      "<p><b>许可证:</b> Apache License 2.0</p>"
                       "<p><a href=\"https://github.com/PhrozenIO\">www.github.com/PhrozenIO</a></p>"
                       "<p>© 2024 - <a href=\"https://www.phrozen.io\">www.phrozen.io</a></p>")
         text.setWordWrap(True)
@@ -60,7 +60,7 @@ class AboutDialog(utilities.QCenteredDialog):
 
         action_buttons_layout.addStretch(1)
 
-        close_button = QPushButton("Close")
+        close_button = QPushButton("关闭")
         close_button.clicked.connect(self.close)
         action_buttons_layout.addWidget(close_button)
 

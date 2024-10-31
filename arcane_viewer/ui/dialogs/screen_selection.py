@@ -21,7 +21,7 @@ class ScreenSelectionDialog(utilities.QCenteredDialog):
 
         self.screens = screens
 
-        self.setWindowTitle(f"Screen Selection ({len(self.screens)} Available)")
+        self.setWindowTitle(f"屏幕选择 ({len(self.screens)} 个可用)")
 
         self.setWindowFlags(
             Qt.WindowType.Dialog |
@@ -33,7 +33,7 @@ class ScreenSelectionDialog(utilities.QCenteredDialog):
         self.setLayout(core_layout)
 
         # Screen Selection Combo
-        screen_selection_label = QLabel("Select Screen:")
+        screen_selection_label = QLabel("选择屏幕:")
         core_layout.addWidget(screen_selection_label)
 
         self.screen_selection_combobox = QComboBox()
@@ -53,11 +53,11 @@ class ScreenSelectionDialog(utilities.QCenteredDialog):
         action_buttons_layout = QHBoxLayout()
         core_layout.addLayout(action_buttons_layout)
 
-        self.cancel_button = QPushButton('Cancel')
+        self.cancel_button = QPushButton('取消')
         self.cancel_button.clicked.connect(lambda: self.reject())
         action_buttons_layout.addWidget(self.cancel_button)
 
-        self.select_button = QPushButton('Select')
+        self.select_button = QPushButton('选择')
         self.select_button.clicked.connect(lambda: self.accept())
         action_buttons_layout.addWidget(self.select_button)
 

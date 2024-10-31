@@ -37,7 +37,7 @@ class RemoteDesktopOptionsTab(QWidget):
         core_layout.addLayout(options_layout)
 
         # Clipboard Sharing Mode
-        clipboard_sharing_label = QLabel("Clipboard Sharing:")
+        clipboard_sharing_label = QLabel("共享剪贴板:")
 
         self.clipboard_sharing_combobox = QComboBox()
         for clipboard_mode in arcane.ClipboardMode:
@@ -47,7 +47,7 @@ class RemoteDesktopOptionsTab(QWidget):
         options_layout.addWidget(self.clipboard_sharing_combobox, 0, 1)
 
         # Capture Settings (Fieldset)
-        desktop_capture_group = QGroupBox("Capture Settings")
+        desktop_capture_group = QGroupBox("捕获设置")
         desktop_capture_group_layout = QGridLayout()
         desktop_capture_group.setLayout(desktop_capture_group_layout)
         core_layout.addWidget(desktop_capture_group)
@@ -55,7 +55,7 @@ class RemoteDesktopOptionsTab(QWidget):
         desktop_capture_group_layout.setContentsMargins(8, 16, 8, 8)
 
         # Virtual Desktop Image Quality
-        image_quality_label = QLabel("Image Quality:")
+        image_quality_label = QLabel("图像质量:")
 
         self.image_quality_input = QSpinBox()
         self.image_quality_input.setMinimum(10)
@@ -63,13 +63,13 @@ class RemoteDesktopOptionsTab(QWidget):
         self.image_quality_input.setValue(80)
 
         # Packet Size (Optimization)
-        packet_size_label = QLabel("Packet Size:")
+        packet_size_label = QLabel("数据包大小:")
         self.packet_size_input = QComboBox()
         for packet_size in arcane.PacketSize:
             self.packet_size_input.addItem(packet_size.display_name, userData=packet_size)
 
         # Block Size (Optimization)
-        block_size_label = QLabel("Block Size:")
+        block_size_label = QLabel("块大小:")
         self.block_size_input = QComboBox()
         for block_size in arcane.BlockSize:
             self.block_size_input.addItem(block_size.display_name, userData=block_size)
@@ -164,16 +164,16 @@ class TrustedCertificatesOptionsTab(QWidget):
         action_buttons_layout = QVBoxLayout()
         core_layout.addLayout(action_buttons_layout)
 
-        self.add_button = QPushButton("Add")
+        self.add_button = QPushButton("添加")
         self.add_button.clicked.connect(lambda: self.add_or_edit_certificate(False))
         action_buttons_layout.addWidget(self.add_button)
 
-        self.edit_button = QPushButton("Edit")
+        self.edit_button = QPushButton("编辑")
         self.edit_button.setEnabled(False)
         self.edit_button.clicked.connect(lambda: self.add_or_edit_certificate(True))
         action_buttons_layout.addWidget(self.edit_button)
 
-        self.remove_button = QPushButton("Remove")
+        self.remove_button = QPushButton("移除")
         self.remove_button.setEnabled(False)
         self.remove_button.clicked.connect(self.remove_button_clicked)
         action_buttons_layout.addWidget(self.remove_button)
@@ -254,9 +254,9 @@ class TrustedCertificatesOptionsTab(QWidget):
         self.model.clear()
 
         self.model.setHorizontalHeaderLabels([
-            "Display Name",
-            "SHA-256 Fingerprint",
-            "Description",
+            "显示名称",
+            "SHA-256 指纹",
+            "描述",
         ])
 
         certificates = self.settings.value(arcane.SETTINGS_KEY_TRUSTED_CERTIFICATES, [])
@@ -342,17 +342,17 @@ class OptionsDialog(utilities.QCenteredDialog):
 
         # General Tab
         self.remote_desktop_tab = RemoteDesktopOptionsTab(self, self.settings)
-        self.options_tab_widget.addTab(self.remote_desktop_tab, "Remote Desktop")
+        self.options_tab_widget.addTab(self.remote_desktop_tab, "远程桌面")
 
         # Trusted Certificates Tab
         self.trusted_certificates_tab = TrustedCertificatesOptionsTab(self, self.settings)
-        self.options_tab_widget.addTab(self.trusted_certificates_tab, "Trusted Certificates")
+        self.options_tab_widget.addTab(self.trusted_certificates_tab, "受信任的证书")
 
         # Action Buttons
         action_buttons_layout = QHBoxLayout()
         core_layout.addLayout(action_buttons_layout)
 
-        self.reset_button = QPushButton('Reset')
+        self.reset_button = QPushButton('重置')
         self.reset_button.setObjectName('danger')
         self.reset_button.clicked.connect(self.reset_settings)
         action_buttons_layout.addWidget(self.reset_button)
@@ -360,11 +360,11 @@ class OptionsDialog(utilities.QCenteredDialog):
         spacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
         action_buttons_layout.addItem(spacer)
 
-        self.cancel_button = QPushButton('Cancel')
+        self.cancel_button = QPushButton('取消')
         self.cancel_button.clicked.connect(lambda: self.reject())
         action_buttons_layout.addWidget(self.cancel_button)
 
-        self.save_button = QPushButton('Save')
+        self.save_button = QPushButton('保存')
         self.save_button.clicked.connect(self.save_settings)
         action_buttons_layout.addWidget(self.save_button)
 
@@ -386,8 +386,8 @@ class OptionsDialog(utilities.QCenteredDialog):
     def reset_settings(self) -> None:
         if QMessageBox.question(
                 self,
-                "Reset Settings",
-                "Are you sure you want to reset all settings to their defaults? (This action cannot be undone)",
+                "重置设置",
+                "你确定要将所有设置重置为默认值吗？（此操作无法撤销）",
         ) == QMessageBox.StandardButton.Yes:
             self.settings.clear()
 

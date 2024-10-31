@@ -17,7 +17,7 @@ class ServerCertificateDialog(utilities.QCenteredDialog):
     def __init__(self, parent: Optional[Union[QDialog, QMainWindow]], fingerprint: str) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle("Unknown Server Certificate")
+        self.setWindowTitle("未知服务器的证书")
 
         self.setWindowFlags(
             Qt.WindowType.Dialog |
@@ -28,8 +28,7 @@ class ServerCertificateDialog(utilities.QCenteredDialog):
         self.setLayout(core_layout)
 
         # Certificate Information
-        certificate_info_label = QLabel("Please ensure the following fingerprint (SHA-1) matches the expected server "
-                                        "fingerprint.")
+        certificate_info_label = QLabel("请确保以下指纹（SHA-1）与预期的服务器指纹匹配。")
 
         certificate_info_label.setObjectName("alert-warning")
         certificate_info_label.setWordWrap(True)
@@ -48,7 +47,7 @@ class ServerCertificateDialog(utilities.QCenteredDialog):
         core_layout.addSpacing(8)
 
         # Trust Certificate Option for next sessions
-        self.trust_certificate_checkbox = QCheckBox("Add this certificate to the trusted certificates store")
+        self.trust_certificate_checkbox = QCheckBox("将此证书添加到受信任证书存储")
         core_layout.addWidget(self.trust_certificate_checkbox)
 
         core_layout.addSpacing(8)
@@ -57,11 +56,11 @@ class ServerCertificateDialog(utilities.QCenteredDialog):
         action_buttons_layout = QHBoxLayout()
         core_layout.addLayout(action_buttons_layout)
 
-        self.reject_button = QPushButton('Reject')
+        self.reject_button = QPushButton('拒绝')
         self.reject_button.clicked.connect(lambda: self.reject())
         action_buttons_layout.addWidget(self.reject_button)
 
-        self.accept_button = QPushButton('Accept')
+        self.accept_button = QPushButton('接受')
         self.accept_button.clicked.connect(lambda: self.accept())
         action_buttons_layout.addWidget(self.accept_button)
 
